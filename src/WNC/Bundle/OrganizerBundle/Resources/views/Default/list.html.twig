@@ -1,0 +1,78 @@
+{% extends "::base.html.twig" %}
+
+{% block headline %}
+Participating communities
+{% endblock headline %}
+
+{% block content %}
+
+<p>Click on specific column to sort organizations. Second click on the same column will put data in reverse order</p>
+
+<form class="form-search">
+  <label>Search</label>
+  <input type="text" class="input-medium search-query" id="filter-box" name="filter">
+  <button type="reset" class="btn" id="filter-clear-button">Clear</button>
+</form>
+
+
+
+<table class="table table-striped tablesorter" id="community">
+<thead>
+  <tr>
+    <th>Community</th>
+    <th>State</th>
+    <th>Contact</th>
+  </tr>
+</thead>
+<tbody>
+{% for organization in organizations %}
+
+    <tr>
+      <td><a href="{{ path('organization_show', {'slug': organization.slug}) }}">{{ organization.community }}</a></td>
+      <td><a href="{{ path('organization_show', {'slug': organization.slug}) }}">{{ organization.state }}</a></td>
+      <td><a href="mailto:{{ organization.contact}}">{{ organization.contact}}</a></td>
+      </tr>
+
+{% endfor %}
+</tbody>
+</table>
+
+
+{% endblock content %}
+
+{% block foot_script %}
+
+{{ parent() }}
+
+{% javascripts
+        'bundles/wncorganizer/js/jquery.tablesorter.min.js'
+        'bundles/wncorganizer/js/jquery.tablesorter.filter.js'
+%}
+<script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
+
+<script>
+
+(function($) {
+
+    $('#community').tablesorter({debug: false, widgets: ['zebra'], sortList: [[0,0]]})
+    .tablesorterFilter({filterContainer: "#filter-box",
+                            filterClearContainer: "#filter-clear-button",
+                            filterColumns: [0,1]});; 
+
+})(jQuery);
+
+</script>
+
+{% endblock %}
+
+{% block head_style %}
+{{ parent() }}
+
+    {% stylesheets
+        'bundles/wncorganizer/css/tablesorter/style.css'
+    %}
+    <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
+    {% endstylesheets %}
+
+{% endblock %}

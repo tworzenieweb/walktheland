@@ -19,6 +19,46 @@ class AppKernel extends Kernel
             new JMS\AopBundle\JMSAopBundle(),
             new JMS\DiExtraBundle\JMSDiExtraBundle($this),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
+            
+            
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            
+            // KNP HELPER BUNDLES
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+
+            // USER
+            new FOS\UserBundle\FOSUserBundle(),
+            new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
+            new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
+
+
+            // MEDIA
+            new Sonata\MediaBundle\SonataMediaBundle(),
+            new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
+            // new Liip\ImagineBundle\LiipImagineBundle(),
+
+            // SONATA CORE & HELPER BUNDLES
+            new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
+            new Sonata\jQueryBundle\SonatajQueryBundle(),
+            new Sonata\AdminBundle\SonataAdminBundle(),
+            new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
+            new Sonata\BlockBundle\SonataBlockBundle(),
+            
+            new WNC\Bundle\OrganizerBundle\WNCOrganizerBundle(),
+            
+            // paypal
+            
+            new Orderly\PayPalIpnBundle\OrderlyPayPalIpnBundle(),
+            new JMS\Payment\CoreBundle\JMSPaymentCoreBundle(),
+            new JMS\Payment\PaypalBundle\JMSPaymentPaypalBundle(),
+            
+            
+            new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
+//            new Craue\FormFlowBundle\CraueFormFlowBundle(),
+            
+            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+            
+            new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

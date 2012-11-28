@@ -1,0 +1,30 @@
+{% extends "::base.html.twig" %}
+
+{% block page_header %}
+
+<ul class="breadcrumb">
+  <li><a href="{{ path('organizations_list') }}">Communities</a> <span class="divider">/</span></li>
+  <li><a href="{{ path('organization_show', {'slug': organization.slug}) }}">{{ organization.community }}, {{ organization.state }}</a> <span class="divider">/</span></li>
+  <li class="active">Register</li>
+</ul>
+
+{% endblock %}
+
+{% block content %}
+
+<h2>Register for {{ organization.community }}, {{ organization.state }}</h2>
+
+
+<form action="{{ path('register_walk', {'slug': organization.slug}) }}" method="post" {{ form_enctype(form) }} class="form-horizontal">
+
+    {{ form_widget(form) }}
+
+    
+
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Send</button>
+        
+    </div>
+
+
+{% endblock %}

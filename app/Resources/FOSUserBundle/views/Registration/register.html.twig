@@ -1,0 +1,25 @@
+{% extends "::base.html.twig" %}
+
+{% block headline %}
+Register your organization
+{% endblock headline %}
+
+
+{% block fos_user_content %}
+{% include "FOSUserBundle:Registration:register_content.html.twig" %}
+
+{% endblock fos_user_content %}
+
+
+{% block foot_script %}
+  
+  {{ parent() }}
+  
+<script>
+  $('#myTab a').click(function (e) {
+    e.preventDefault();
+    $(this).tab('show');
+  });
+</script>
+
+{% endblock %}

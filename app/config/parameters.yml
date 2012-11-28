@@ -2,9 +2,9 @@ parameters:
     database_driver:   pdo_mysql
     database_host:     localhost
     database_port:     ~
-    database_name:     symfony
+    database_name:     wnc_walktheland
     database_user:     root
-    database_password: ~
+    database_password: lukasz.123
 
     mailer_transport:  smtp
     mailer_host:       localhost
@@ -13,3 +13,11 @@ parameters:
 
     locale:            en
     secret:            ThisTokenIsNotSoSecretChangeIt
+    
+    
+    # Sonata Admin Options
+    sonata_admin.title:             Walk The Land
+    sonata_admin.logo_title:        /bundles/sonataadmin/logo_title.png
+    sonata_media.cdn.host:          /uploads/media
+    
+    contact_email: tworzenieweb@gmail.com

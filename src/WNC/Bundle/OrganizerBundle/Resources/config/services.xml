@@ -1,0 +1,85 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="wnc_organizer.payment.listener.class">WNC\Bundle\OrganizerBundle\Listener\PaymentListener</parameter>
+    </parameters>
+    <!--
+
+    <services>
+        <service id="wnc_organizer.example" class="%wnc_organizer.example.class%">
+            <argument type="service" id="service_id" />
+            <argument>plain_value</argument>
+            <argument>%parameter_name%</argument>
+        </service>
+    </services>
+    -->
+    
+    <services>
+      <service id="sonata.admin.organization" class="WNC\Bundle\OrganizerBundle\Admin\OrganizationAdmin">
+        <tag name="sonata.admin" manager_type="orm" label="Organizations" group="CRM" />
+        <argument />
+        <argument>WNC\Bundle\OrganizerBundle\Entity\Organization</argument>
+        <argument>SonataAdminBundle:CRUD</argument>
+        <call method="setTranslationDomain">
+          <argument>WNCOrganizerBundle</argument>
+        </call>
+      </service>
+      
+      <service id="sonata.admin.donate" class="WNC\Bundle\OrganizerBundle\Admin\DonateAdmin">
+        <tag name="sonata.admin" manager_type="orm" label="Donations" group="CRM" />
+        <argument />
+        <argument>WNC\Bundle\OrganizerBundle\Entity\Donate</argument>
+        <argument>SonataAdminBundle:CRUD</argument>
+        <call method="setTranslationDomain">
+          <argument>WNCOrganizerBundle</argument>
+        </call>
+      </service>
+      
+      <service id="wnc_organizer.menu_builder" class="WNC\Bundle\OrganizerBundle\Navbar\MenuBuilder">
+        <argument type="service" id="knp_menu.factory" />        
+        <argument id="security.context" type="service" />
+      </service>
+      
+      <service id="wnc_organizer.menu" class="Knp\Menu\MenuItem" factory-service="wnc_organizer.menu_builder" factory-method="createMainMenu" scope="request">
+        <argument id="request" type="service" />
+        <tag name="knp_menu.menu" alias="main" />
+      </service>
+      
+      <service id="wnc_organizer.menu_right" class="Knp\Menu\MenuItem" factory-service="wnc_organizer.menu_builder" factory-method="createRightMenu" scope="request">
+        <argument id="request" type="service" />
+        <tag name="knp_menu.menu" alias="main" />
+      </service>
+      
+      
+      <service class="%mopa_bootstrap.navbar.generic%" id="wnc_organizer.navbar">
+        <argument type="collection">
+           <argument type="service" key="leftmenu" id="wnc_organizer.menu" strict="false" />   
+           <argument type="service" key="rightmenu" id="wnc_organizer.menu_right" strict="false" />   
+        </argument>
+
+        <argument type="collection">
+        </argument>
+        <argument type="collection">
+          <argument key="fixedTop" >false</argument>
+          <argument key="isFluid" >false</argument>
+          <argument key="template" >MopaBootstrapBundle:Navbar:navbar.html.twig</argument>
+        </argument>
+        <tag name="mopa_bootstrap.navbar" alias="frontendNavbar" />
+      </service>
+      
+      <service class="WNC\Bundle\Organizer\Navbar\Voter\RequestVoter" id="wnc_organizer.menu_voter">
+        <argument id="service_container" type="service" />
+        <tag name="knp_menu.voter" />
+      </service>
+      
+      <service id="wnc_organizer.payment.listener" class="%wnc_organizer.payment.listener.class%">
+        <argument type="service" id="doctrine.orm.entity_manager" />
+        <tag name="kernel.event_listener" event="payment.state_change" method="onPaymentStateChange" />
+      </service>
+      
+    </services>
+</container>

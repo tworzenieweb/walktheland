@@ -1,0 +1,31 @@
+{% extends "::base.html.twig" %}
+
+{% block headline %}
+Greeting card
+{% endblock headline %}
+
+{% block content %}
+
+<OBJECT classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
+codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0"
+WIDTH="576" HEIGHT="330" id="greet"><PARAM NAME=movie VALUE="http://walktheland.org/images/artwork/Celebrate60greetings_kc.swf"><PARAM NAME=quality VALUE=high><PARAM NAME=bgcolor VALUE=#FFFFFF><EMBED src="http://walktheland.org/images/artwork/Celebrate60greetings_kc.swf" quality=high bgcolor=#FFFFFF WIDTH="576" HEIGHT="330"
+NAME="http://walktheland.org/images/artwork/Celebrate60greetings_kc.swf" ALIGN="" TYPE="application/x-shockwave-flash"
+PLUGINSPAGE="http://www.macromedia.com/go/getflashplayer"></EMBED></OBJECT>
+   
+<h4>Mazal Tov to the State of Israel in this very special milestone year. Our hearts are with you. Together we Walk the Land.</h4>
+
+{% for amount, d in donators %}
+
+<h4>{{ amount }}$</h4>
+
+{% for donator in d %}
+
+<p>{{ donator.who }}</p>
+
+{% endfor %}
+
+{% endfor %}
+
+{% endblock content %}
+
+

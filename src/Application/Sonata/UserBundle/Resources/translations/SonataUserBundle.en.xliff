@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="" >
+    <body>
+      <trans-unit id="list.label_is_confirmed">
+        <source>list.label_is_confirmed</source>
+        <target>Email confirmed</target>
+      </trans-unit>
+      <trans-unit id="list.label_first_name">
+        <source>list.label_first_name</source>
+        <target>First Name</target>
+      </trans-unit>
+      <trans-unit id="list.label_last_name">
+        <source>list.label_last_name</source>
+        <target>Last Name</target>
+      </trans-unit>
+      <trans-unit id="list.label__action">
+        <source>list.label__action</source>
+        <target>Actions</target>
+      </trans-unit>
+            
+      <trans-unit id="form.label_first_name">
+        <source>form.label_first_name</source>
+        <target>First Name</target>
+      </trans-unit>
+      <trans-unit id="form.label_last_name">
+        <source>form.label_last_name</source>
+        <target>Last Name</target>
+      </trans-unit>
+           
+           
+      <trans-unit id="show.label_organization_name">
+        <source>show.label_organization_name</source>
+        <target>Organization name</target>
+      </trans-unit>
+      <trans-unit id="show.label_organization_event_location">
+        <source>show.label_organization_event_location</source>
+        <target>Event location</target>
+      </trans-unit>
+      <trans-unit id="show.label_organization_event_time">
+        <source>show.label_organization_event_time</source>
+        <target>Event Time</target>
+      </trans-unit>
+      <trans-unit id="show.label_organization_comunity">
+        <source>show.label_organization_comunity</source>
+        <target>Community</target>
+      </trans-unit>
+      <trans-unit id="show.label_organization_state">
+        <source>show.label_organization_state</source>
+        <target>State</target>
+      </trans-unit>
+           
+    </body>
+  </file>
+</xliff>

@@ -1,0 +1,44 @@
+{% extends "::base.html.twig" %}
+
+{% from 'MopaBootstrapBundle::flash.html.twig' import session_flash %}
+
+
+{% block flashes %}
+    {% if app.session.flashbag.peekAll|length > 0 %}
+    <div class="row-fluid">
+        <div class="span12">
+        {{ session_flash(true) }}
+        </div>
+    </div>
+    {% endif %}
+{% endblock flashes %}
+
+{% block headline %}
+Contact Form
+{% endblock headline %}
+
+{% block content %}
+
+
+   
+
+    <form action="{{ path('contact') }}" method="post" {{ form_enctype(form) }} class="form-horizontal">
+
+    {{ form_errors(form) }}
+
+    {{ form_row(form.name) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.topic) }}
+    {{ form_row(form.message) }}
+
+    {{ form_rest(form) }}
+
+    
+
+    <div class="form-actions">
+        <button type="submit" class="button">Send</button>
+        
+    </div>
+
+{% endblock content %}
+

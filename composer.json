@@ -17,22 +17,62 @@
         "sensio/framework-extra-bundle": "2.1.*",
         "sensio/generator-bundle": "2.1.*",
         "jms/security-extra-bundle": "1.2.*",
-        "jms/di-extra-bundle": "1.1.*"
+        "jms/di-extra-bundle": "1.1.*",
+        
+        "liip/imagine-bundle": "dev-master",
+
+        "sonata-project/doctrine-orm-admin-bundle": "dev-master",
+        "sonata-project/user-bundle": "dev-master",
+        "sonata-project/doctrine-extensions": "dev-master",
+        "friendsofsymfony/user-bundle": "*",
+        "sonata-project/media-bundle": "*",
+        "orderly/paypal-ipn-bundle": "*",
+        "jms/payment-paypal-bundle": "*",
+        
+        "mopa/bootstrap-bundle": "dev-master",
+        "twitter/bootstrap": "master",
+        "knplabs/knp-paginator-bundle": "dev-master",
+        "craue/formflow-bundle": "dev-master",
+        
+         "stof/doctrine-extensions-bundle": "dev-master",
+         
+         "doctrine/doctrine-fixtures-bundle": "dev-master"
+
     },
     "scripts": {
         "post-install-cmd": [
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+            "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
         ],
         "post-update-cmd": [
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+            "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
         ]
     },
+    "repositories": [
+           {
+               "type": "package",
+               "package": {
+                   "version": "master",
+                   "name": "twitter/bootstrap",
+                   "source": {
+                       "url": "https://github.com/twitter/bootstrap.git",
+                       "type": "git",
+                       "reference": "master"
+                   },
+                   "dist": {
+                       "url": "https://github.com/twitter/bootstrap/zipball/master",
+                       "type": "zip"
+                   }
+               }
+           }
+       ],
     "minimum-stability": "dev",
     "extra": {
         "symfony-app-dir": "app",

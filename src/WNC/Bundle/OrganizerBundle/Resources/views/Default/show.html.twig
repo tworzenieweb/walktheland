@@ -1,0 +1,99 @@
+{% extends "::base.html.twig" %}
+
+{% block page_header %}
+
+<ul class="breadcrumb">
+  <li><a href="{{ path('organizations_list') }}">Communities</a> <span class="divider">/</span></li>
+  <li class="active">{{ organization.community }}, {{ organization.state }}</li>
+</ul>
+
+{% endblock %}
+
+{% block content %}
+
+
+<div class="row-fluid">
+
+  <div class="span6">
+
+    <h2>{{ organization.community }}, {{ organization.state }}</h2>
+
+    <a href="{{ path('greeting_card') }}">View the Celebrate 60 Greeting Card &raquo;</a>
+
+    <h4>Location</h4>
+    <p>{{ organization.eventLocation }}</p>
+
+    <h4>Event Time</h4>
+    <p>{{ organization.eventTime|date('F jS \\a\\t g:ia') }}</p>
+
+    <h4>Organization</h4>
+    <p>{{ organization.name }}</p>
+
+    <h4>Contact information</h4>
+    <p>{{ organization.contact.firstName }} {{ organization.contact.lastName }}</p>
+    <p>Phone: {{ organization.contact.phone }}</p>
+    <p>Email: {{ organization.contact.email }}</p>
+
+    
+    <a href="{{ path('register_walk', {'slug': organization.slug}) }}" class="btn">Register on walk</a>
+    
+  </div>
+
+  <div class="span6">
+
+    <p><a href="{{ path('share_community', {'slug': organization.slug}) }}"><i class="icon-envelope"></i> Share this community &raquo;</a></p>
+
+    <div id="map">
+    </div>
+  </div>
+
+</div>
+
+<style>
+    #map img {
+      max-width: none;
+    }
+
+  </style>
+
+{% endblock %}
+
+{% block foot_script %}
+{{ parent() }}
+
+{% javascripts
+        'http://maps.google.com/maps/api/js?sensor=false&amp;language=en'
+        '@WNCOrganizerBundle/Resources/public/js/gmap.js'
+%}
+  <script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
+
+  <script>
+    (function($) {
+        
+      $("#map").gmap3({
+        marker:{
+           address: "{{ organization.state }}"
+        },
+         map:{
+          options:
+            {         
+           zoom: 6
+          }
+          }
+       });
+       
+       $(window).resize(function () {
+    var h = $(window).height(),
+        offsetTop = 60; // Calculate the top offset
+
+        if(h > 500)
+          h = 500;
+
+    $('#map').css('height', (h - offsetTop));
+}).resize();
+  
+    })(jQuery);
+    </script>
+
+{% endblock %}

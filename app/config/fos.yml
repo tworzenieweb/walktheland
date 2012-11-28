@@ -1,0 +1,28 @@
+fos_user:
+    db_driver:      orm # can be orm or odm
+    firewall_name:  main
+    user_class:     Application\Sonata\UserBundle\Entity\User
+
+    group:
+        group_class: Application\Sonata\UserBundle\Entity\Group
+
+
+    registration:
+        confirmation:
+            enabled:    true
+            from_email:
+              address:        registration@walktheland.com
+              sender_name:    Walk The Land Sender
+        form:
+            type: application_sonata_user_registration
+            name: application_sonata_user_registration
+
+# Enable Doctrine to map the provided entities
+doctrine:
+    orm:
+        entity_managers:
+            default:
+                mappings:
+                    FOSUserBundle: ~
+                    ApplicationSonataUserBundle: ~
+                    SonataUserBundle: ~

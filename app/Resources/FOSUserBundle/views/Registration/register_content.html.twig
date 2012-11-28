@@ -1,0 +1,41 @@
+<form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register form-horizontal">
+
+  {{ form_errors(form) }}
+    
+<ul class="nav nav-tabs" id="myTab">
+  <li class="active"><a href="#profile">Profile details</a></li>
+  <li><a href="#organization">Organization</a></li>
+</ul>
+ 
+<div class="tab-content">
+  <div class="tab-pane active" id="profile">
+  
+  {{ form_row(form.firstname) }}
+    {{ form_row(form.lastname) }}
+    {{ form_row(form.gender) }}
+    {{ form_row(form.phone) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.plainPassword) }}
+  </div>
+  <div class="tab-pane" id="organization">
+    {{ form_row(form.organization.name) }}
+    {{ form_row(form.organization.community) }}
+    {{ form_row(form.organization.state) }}
+    {{ form_row(form.organization.event_location) }}
+    {{ form_row(form.organization.event_time) }}
+</div>
+  
+    
+    {{ form_row(form._token) }}
+    
+</div>
+ 
+ 
+  
+    
+    <div class="form-actions">
+            <button type="submit" class="btn btn-primary">{{ 'registration.submit'|trans({}, 'FOSUserBundle') }}</button>
+            <button type="reset" class="btn">Cancel</button>
+    </div>
+    
+</form>

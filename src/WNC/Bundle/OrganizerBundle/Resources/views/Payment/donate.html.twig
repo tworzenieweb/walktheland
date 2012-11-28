@@ -1,0 +1,33 @@
+{% extends "::base.html.twig" %}
+
+{% from 'MopaBootstrapBundle::flash.html.twig' import session_flash %}
+
+
+{% block flashes %}
+    {% if app.session.flashbag.peekAll|length > 0 %}
+    <div class="row-fluid">
+        <div class="span12">
+        {{ session_flash(true) }}
+        </div>
+    </div>
+    {% endif %}
+{% endblock flashes %}
+
+{% block headline %}
+Donate
+{% endblock headline %}
+
+{% block content %}
+
+  
+  <form action="{{ path('donate') }}" method="POST" class="form-horizontal">
+        {{ form_widget(form) }}
+      
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Process payment</button>
+            <button type="reset" class="btn">Cancel</button>
+        </div>
+      
+        
+    </form>
+{% endblock %}
