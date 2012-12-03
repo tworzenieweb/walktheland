@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <!--
+    <parameters>
+        <parameter key="wnccms.example.class">WNC\Bundle\CMSBundle\Example</parameter>
+    </parameters>
+
+    -->
+    <services>
+        <service id="sonata.admin.article" class="WNC\Bundle\CMSBundle\Admin\ArticleAdmin">
+        <tag name="sonata.admin" manager_type="orm" label="Article" group="CMS" />
+        <argument />
+        <argument>WNC\Bundle\CMSBundle\Entity\Article</argument>
+        <argument>SonataAdminBundle:CRUD</argument>
+        <call method="setTranslationDomain">
+          <argument>WNCArticleBundle</argument>
+        </call>
+      </service>
+    </services>
+</container>

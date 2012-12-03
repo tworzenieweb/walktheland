@@ -1,0 +1,22 @@
+<div class="span12">
+    <h3>Walk This Way</h3>
+
+    {% for article in articles %}
+
+        <div class="media">
+          <a class="pull-left" href="#">
+           {% thumbnail article.picture, 'small' %}
+          </a>
+          <div class="media-body">
+            <h4 class="media-heading"><a href="{{ path('article_show', {'slug': article.slug}) }}">{{ article.title }}</a></h4>
+
+            <p>{{ article.abstract|raw }}</p>
+
+          </div>
+        </div>
+    
+    {% endfor %}
+
+
+			 
+  </div>

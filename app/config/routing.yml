@@ -1,3 +1,8 @@
+wnccms:
+    resource: "@WNCCMSBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 wnc_organizer:
     resource: "@WNCOrganizerBundle/Controller/"
     type:     annotation

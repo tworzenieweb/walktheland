@@ -38,7 +38,9 @@
          
          "doctrine/doctrine-fixtures-bundle": "dev-master",
          
-         "friendsofsymfony/facebook-bundle": "dev-master"
+         "friendsofsymfony/facebook-bundle": "dev-master",
+         
+         "stfalcon/tinymce-bundle": "dev-master"
 
     },
     "scripts": {

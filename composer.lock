@@ -1,5 +1,5 @@
 {
-    "hash": "294e9ef4906cb1068f761e8e70f21562",
+    "hash": "6e32e7bddad571c1ebe63eab03243954",
     "packages": [
         {
             "name": "craue/formflow-bundle",
@@ -582,12 +582,12 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/l3pp4rd/DoctrineExtensions.git",
-                "reference": "b62943d0629acda07e4faca7b0b3f6d6b1870807"
+                "reference": "1384813b39df29465a5d30762fc5bc665aa94db0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/l3pp4rd/DoctrineExtensions/archive/b62943d0629acda07e4faca7b0b3f6d6b1870807.zip",
-                "reference": "b62943d0629acda07e4faca7b0b3f6d6b1870807",
+                "url": "https://github.com/l3pp4rd/DoctrineExtensions/archive/1384813b39df29465a5d30762fc5bc665aa94db0.zip",
+                "reference": "1384813b39df29465a5d30762fc5bc665aa94db0",
                 "shasum": ""
             },
             "require": {
@@ -598,7 +598,7 @@
                 "doctrine/orm": ">=2.1",
                 "doctrine/mongodb-odm": "*"
             },
-            "time": "1354218027",
+            "time": "1354515204",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1908,12 +1908,12 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/sonata-project/SonataAdminBundle.git",
-                "reference": "8f742e9c412aac261928954e9719552086ca7caf"
+                "reference": "cf8f5f480b5e988d8d41af8d1e1029f63303ed2c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/sonata-project/SonataAdminBundle/archive/8f742e9c412aac261928954e9719552086ca7caf.zip",
-                "reference": "8f742e9c412aac261928954e9719552086ca7caf",
+                "url": "https://github.com/sonata-project/SonataAdminBundle/archive/cf8f5f480b5e988d8d41af8d1e1029f63303ed2c.zip",
+                "reference": "cf8f5f480b5e988d8d41af8d1e1029f63303ed2c",
                 "shasum": ""
             },
             "require": {
@@ -1938,7 +1938,7 @@
                 "sonata-project/doctrine-orm-admin-bundle": "dev-master",
                 "sonata-project/intl-bundle": "dev-master"
             },
-            "time": "1353948790",
+            "time": "1354274721",
             "type": "symfony-bundle",
             "installation-source": "source",
             "autoload": {
@@ -2327,12 +2327,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataMediaBundle",
-                "reference": "904519ff849b7211deb66f436087d3c3f01ea748"
+                "reference": "8b698c95aaaabfc9a72a128ab19c8ea5900023a8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/sonata-project/SonataMediaBundle/archive/904519ff849b7211deb66f436087d3c3f01ea748.zip",
-                "reference": "904519ff849b7211deb66f436087d3c3f01ea748",
+                "url": "https://github.com/sonata-project/SonataMediaBundle/archive/8b698c95aaaabfc9a72a128ab19c8ea5900023a8.zip",
+                "reference": "8b698c95aaaabfc9a72a128ab19c8ea5900023a8",
                 "shasum": ""
             },
             "require": {
@@ -2354,7 +2354,7 @@
                 "liip/imagine-bundle": "dev-master",
                 "amazonwebservices/aws-sdk-for-php": "1.5.*"
             },
-            "time": "1354029639",
+            "time": "1354276864",
             "type": "symfony-bundle",
             "installation-source": "source",
             "autoload": {
@@ -2504,6 +2504,59 @@
                 "sonata",
                 "user",
                 "google authenticator"
+            ]
+        },
+        {
+            "name": "stfalcon/tinymce-bundle",
+            "version": "dev-master",
+            "target-dir": "Stfalcon/Bundle/TinymceBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/stfalcon/TinymceBundle",
+                "reference": "9bffbd91aa6ee397cb26bb0a5826caca2a2263fb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/stfalcon/TinymceBundle/archive/9bffbd91aa6ee397cb26bb0a5826caca2a2263fb.zip",
+                "reference": "9bffbd91aa6ee397cb26bb0a5826caca2a2263fb",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0",
+                "symfony/symfony": ">=2.1"
+            },
+            "time": "1353495773",
+            "type": "symfony-bundle",
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "Stfalcon\\Bundle\\TinymceBundle": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stepan Tanasiychuk",
+                    "email": "ceo@stfalcon.com",
+                    "homepage": "http://blog.stfalcon.com"
+                },
+                {
+                    "name": "Igor Negrutsa",
+                    "email": "progi2007@gmail.com",
+                    "homepage": "http://igor-negrutsa.info"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://github.com/stfalcon/TinymceBundle/contributors"
+                }
+            ],
+            "description": "This Bundle integrates TinyMCE WYSIWYG editor into a Symfony2 project.",
+            "keywords": [
+                "wysiwyg",
+                "tinymce",
+                "editor"
             ]
         },
         {
@@ -2796,12 +2849,12 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/symfony/symfony.git",
-                "reference": "v2.1.4"
+                "reference": "a82f3ed134405361381fba79de65791b0d15f3b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/symfony/symfony/archive/v2.1.4.zip",
-                "reference": "v2.1.4",
+                "url": "https://github.com/symfony/symfony/archive/a82f3ed134405361381fba79de65791b0d15f3b8.zip",
+                "reference": "a82f3ed134405361381fba79de65791b0d15f3b8",
                 "shasum": ""
             },
             "require": {
@@ -2850,7 +2903,7 @@
                 "propel/propel1": "dev-master",
                 "monolog/monolog": "1.*"
             },
-            "time": "1354190179",
+            "time": "1354471267",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -2936,18 +2989,18 @@
             "source": {
                 "type": "git",
                 "url": "git://github.com/fabpot/Twig.git",
-                "reference": "b58df0e1ae4b664f561bfaeffdb673829daa6b79"
+                "reference": "6810dbe8a7be204813a4397b1bddcfdb875fe2e2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/fabpot/Twig/archive/b58df0e1ae4b664f561bfaeffdb673829daa6b79.zip",
-                "reference": "b58df0e1ae4b664f561bfaeffdb673829daa6b79",
+                "url": "https://github.com/fabpot/Twig/archive/6810dbe8a7be204813a4397b1bddcfdb875fe2e2.zip",
+                "reference": "6810dbe8a7be204813a4397b1bddcfdb875fe2e2",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.2.4"
             },
-            "time": "1353925549",
+            "time": "1354387289",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -3013,6 +3066,7 @@
         "craue/formflow-bundle": 20,
         "stof/doctrine-extensions-bundle": 20,
         "doctrine/doctrine-fixtures-bundle": 20,
-        "friendsofsymfony/facebook-bundle": 20
+        "friendsofsymfony/facebook-bundle": 20,
+        "stfalcon/tinymce-bundle": 20
     }
 }

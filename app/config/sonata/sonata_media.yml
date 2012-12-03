@@ -28,6 +28,14 @@ sonata_media:
             formats:
                 small: { width: 250, quality: 100}
                 big: { width: 500, quality: 100}
+                
+        cms:
+            providers:
+                - sonata.media.provider.image
+
+            formats:
+                small: { width: 150, quality: 100}
+                big: { width: 500, quality: 100}
 
     cdn:
         # define the public base url for the uploaded media
