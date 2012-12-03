@@ -1,0 +1,64 @@
+{% extends "ApplicationSonataUserBundle:Profile:show.html.twig" %}
+
+{% block extra_header %}- Edit form{% endblock %}
+
+{% block content_page %}
+<div class="sonata-user-edit-profile">
+
+
+    <form action="{{ path('sonata_user_profile_edit') }}" method="POST">
+        
+          {{ form_errors(form) }}
+    
+<ul class="nav nav-tabs" id="myTab">
+  <li class="active"><a href="#profile">Profile details</a></li>
+  <li><a href="#organization">Organization</a></li>
+</ul>
+ 
+<div class="tab-content">
+  <div class="tab-pane active" id="profile">
+  
+  {{ form_row(form.firstname) }}
+    {{ form_row(form.lastname) }}
+    {{ form_row(form.gender) }}
+    {{ form_row(form.phone) }}
+  </div>
+  <div class="tab-pane" id="organization">
+    {{ form_row(form.organization.name) }}
+    {{ form_row(form.organization.community) }}
+    {{ form_row(form.organization.state) }}
+    {{ form_row(form.organization.event_location) }}
+    {{ form_row(form.organization.event_time) }}
+</div>
+  
+    
+    {{ form_row(form._token) }}
+    
+</div>
+ 
+ 
+  
+    
+    <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Update</button>
+    </div>
+      
+    </form>
+
+</div>
+
+{% endblock %}
+
+
+{% block foot_script %}
+  
+  {{ parent() }}
+  
+<script>
+  $('#myTab a').click(function (e) {
+    e.preventDefault();
+    $(this).tab('show');
+  });
+</script>
+
+{% endblock %}

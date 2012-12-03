@@ -11,7 +11,7 @@ sonata_user:
 
     profile:
         form:
-            type:                 sonata_user_profile
+            type:                 application_sonata_user_edit
             handler:              sonata.user.profile.form.handler.default
             name:                 sonata_user_profile_form
             validation_groups:

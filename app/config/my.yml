@@ -10,3 +10,10 @@ mopa_bootstrap:
   form:
     show_legend: false
     
+fos_facebook:
+      file:   %kernel.root_dir%/../vendor/facebook/php-sdk/src/base_facebook.php
+      alias:  facebook
+      app_id: 200123070080537
+      secret: 61a2f550eb0f105ac827ac94be4e5ffa
+      cookie: true
+      permissions: [email, user_birthday, user_location]

@@ -18,7 +18,9 @@ class OrganizerRepository extends EntityRepository
     
     return $this->createQueryBuilder('o')
             ->select('o', 'c')
-            ->innerJoin('o.contact', 'c');
+            ->innerJoin('o.contact', 'c')
+            ->where('c.enabled = :enabled')
+            ->setParameter('enabled', true);
     
   }
   
@@ -34,7 +36,7 @@ class OrganizerRepository extends EntityRepository
   public function findOneBySlugWithContact($slug)
   {
     return $this->withContact()
-            ->where('o.slug = ?1')
+            ->andWhere('o.slug = ?1')
             ->setParameter('1', $slug)
             ->getQuery()
             ->getSingleResult();

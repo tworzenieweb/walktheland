@@ -33,7 +33,7 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [MopaBootstrapBundle, WNCOrganizerBundle]
+    bundles:        [MopaBootstrapBundle, WNCOrganizerBundle, SonataUserBundle, ApplicationSonataUserBundle]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~

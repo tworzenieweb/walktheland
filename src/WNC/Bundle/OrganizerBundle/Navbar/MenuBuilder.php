@@ -29,14 +29,15 @@ class MenuBuilder extends AbstractNavbarMenuBuilder
 
     public function createMainMenu(Request $request)
     {
-        
-        
 
       
         $menu = $this->createNavbarMenuItem();
         $menu->addChild('Homepage', array('route' => 'homepage'));
         $menu->addChild('Participating Communities', array('route' => 'organizations_list'));
-        $menu->addChild('Sign Up', array('route' => 'fos_user_registration_register'));
+        
+        if(!$this->securityContext->isGranted('ROLE_USER')) {
+          $menu->addChild('Sign Up', array('route' => 'fos_user_registration_register'));
+        }
         $menu->addChild('Contact', array('route' => 'contact'));
         $menu->addChild('Donate', array('route' => 'donate'));
 
@@ -50,7 +51,15 @@ class MenuBuilder extends AbstractNavbarMenuBuilder
         $menu = $this->factory->createItem('root');
         $menu->setChildrenAttribute('class', 'nav pull-right');
 
-        $menu->addChild('Login', array('route' => 'fos_user_security_login'));
+//        print_r($this->securityContext->getToken()); exit;
+        
+        if($this->securityContext->isGranted('ROLE_USER')) {
+          $menu->addChild(sprintf('My Organization (%s)', $this->securityContext->getToken()->getUser()), array('route' => 'sonata_user_profile_show'));
+          $menu->addChild('Logout', array('route' => 'fos_user_security_logout'));
+        }
+        else
+          $menu->addChild('Login', array('route' => 'fos_user_security_login'));
+        
         $menu->setCurrentUri($request->getRequestUri());
         
         return $menu;

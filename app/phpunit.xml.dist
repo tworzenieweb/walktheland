@@ -38,4 +38,11 @@
         </whitelist>
     </filter>
 
+    <php>
+      <server name="API_USERNAME" value="shop_1353685870_biz_api1.gmail.com"/>
+      <server name="API_PASSWORD" value="1353685932"/>
+      <server name="API_SIGNATURE" value="AA1dvgz56ZOyWR8XhPpo0lqrPT-AAf2EAAs39HjhbSiYaZoJVknYxw9R"/>
+      
+    </php>
+
 </phpunit>

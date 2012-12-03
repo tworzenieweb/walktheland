@@ -1,0 +1,24 @@
+{% block subject %}
+{% autoescape false %}
+New participant for walk
+{% endautoescape %}
+{% endblock %}
+{% block body_text %}
+{% autoescape false %}
+{% endautoescape %}
+{% endblock %}
+{% block body_html %}
+
+<h3>Hi {{ organization.contact.firstname }},</h3>
+
+<p>new participant has register for walk:</p>
+
+<p>{{ participant.firstName }} {{ participant.lastName }}</p>
+<p>{{ participant.email }} {{ participant.phone }}</p>
+
+<p>You can watch all your participants on <a href="{{ url }}">{{ url }}</a></p>
+
+Regards
+{% endblock %}
+
+

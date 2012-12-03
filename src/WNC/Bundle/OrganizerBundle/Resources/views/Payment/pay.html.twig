@@ -1,8 +1,19 @@
 {% extends "::base.html.twig" %}
-{% block body %}
-<div class="container">
+
+
+{% block headline %}
+Payment confirmation
+{% endblock headline %}
+
+{% block content %}
+
+<p>When button will be clicked you will be redirected to paypal service.</p>
+  
+  <div class="container">
 <form action="{{ path('payment', {'id': id}) }}" method="POST">
-        {{ form_widget(form) }}
-        <button type="submit">Process payment</button>
+        
+  <div style="display: none;">{{ form_widget(form) }}</div>
+  
+        <button type="submit" class="btn">Process payment</button>
     </form>
 {% endblock %}

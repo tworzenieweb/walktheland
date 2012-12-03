@@ -16,7 +16,9 @@ security:
 
     providers:
         fos_userbundle:
-            id: fos_user.user_manager
+            id: fos_user.user_manager    
+        wnc_facebook_provider:
+            id: wnc.facebook.user 
 
     firewalls:
         # Disabling the security for the web debug toolbar, the profiler and Assetic.
@@ -44,14 +46,25 @@ security:
         main:
             pattern:      .*
             context:        user
+            
+#            fos_facebook:
+#                app_url: "http://apps.facebook.com/processing-app/"
+#                server_url: "http://walktheland.web.dev/"
+#                provider: wnc_facebook_provider
+#                login_path: /login
+#                check_path: /login_check
+#            logout:
+#                handlers: ["fos_facebook.logout_handler"]
+            
             form_login:
                 provider:       fos_userbundle
                 login_path:     /login
                 use_forward:    false
                 check_path:     /login_check
                 failure_path:   null
-            logout:       true
+                
             anonymous:    true
+            logout: true
 
     access_control:
         # URL of FOSUserBundle which need to be available to anonymous users

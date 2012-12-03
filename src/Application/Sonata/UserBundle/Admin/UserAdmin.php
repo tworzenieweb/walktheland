@@ -10,8 +10,11 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
 
+use FOS\UserBundle\Mailer\MailerInterface;
+
 class UserAdmin extends BaseAdmin
 {
+    private $mailer;
 
     /**
      * {@inheritdoc}
@@ -72,6 +75,32 @@ class UserAdmin extends BaseAdmin
         ;
 
         
+    }
+    
+    public function preUpdate($user)
+    {
+      
+      if($user->isEnabled())
+      {
+        $this->getMailer()->sendEnabledMessage($user);
+      }
+      
+      parent::preUpdate($user);
+      
+    }
+    
+    public function setMailer(MailerInterface $mailer)
+    {
+      $this->mailer = $mailer;
+    }
+    
+    /**
+     * 
+     * @return \FOS\UserBundle\Mailer\MailerInterface
+     */
+    public function getMailer()
+    {
+      return $this->mailer;
     }
 
 }

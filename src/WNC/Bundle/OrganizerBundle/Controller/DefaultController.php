@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use WNC\Bundle\OrganizerBundle\Entity\Participant;
 use WNC\Bundle\OrganizerBundle\Form\ParticipantType;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use JMS\SecurityExtraBundle\Annotation\Secure;
 
 class DefaultController extends Controller
 {
@@ -62,6 +63,9 @@ class DefaultController extends Controller
               
               $this->get('session')->setFlash('success',"Organizator will be informed about your registration");
               
+              $this->get('fos_user.mailer.twig_swift')->sendOrganizationNotification($organization, $entity);
+              
+              
               return new RedirectResponse($this->generateUrl('organization_show', array(
                   'slug' => $organization->getSlug()
               )));
@@ -107,7 +111,10 @@ class DefaultController extends Controller
      */
     public function shareAction($slug)
     {
-        
+     
+      return array('organization' =>
+          $this->getDoctrine()->getRepository('WNCOrganizerBundle:Organization')->findOneBySlugWithContact($slug));
+      
     }
     
     /**
@@ -142,6 +149,16 @@ class DefaultController extends Controller
     }
     
     /**
+     * @Route("/organization/participants", name="organization_participants")
+     * @Secure(roles="ROLE_USER")
+     * @Template()
+     */
+    public function participantsAction()
+    {
+      return array('participants' => $this->getUser()->getOrganization()->getParticipants());
+    }
+    
+    /**
      * @Route("/organization/{slug}", name="organization_show")
      * @Template()
      */
@@ -150,4 +167,5 @@ class DefaultController extends Controller
       return array('organization' => 
           $this->getDoctrine()->getRepository('WNCOrganizerBundle:Organization')->findOneBySlugWithContact($slug));
     }
+    
 }

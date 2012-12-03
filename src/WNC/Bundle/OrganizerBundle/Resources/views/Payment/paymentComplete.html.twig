@@ -1,6 +1,14 @@
 {% extends "::base.html.twig" %}
-{% block body %}
 
+
+{% block headline %}
 Payment completed
+{% endblock headline %}
+
+{% block content %}
+
+<p>You can now go to <a href="{{ path('greeting_card') }}">this page</a> to see your donation.</p>
+
+<p>Thank you.</p>
 
 {% endblock %}

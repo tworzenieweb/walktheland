@@ -29,6 +29,16 @@
         </call>
       </service>
       
+      <service id="sonata.admin.participant" class="WNC\Bundle\OrganizerBundle\Admin\ParticipantAdmin">
+        <tag name="sonata.admin" manager_type="orm" label="Participants" group="CRM" />
+        <argument />
+        <argument>WNC\Bundle\OrganizerBundle\Entity\Participant</argument>
+        <argument>SonataAdminBundle:CRUD</argument>
+        <call method="setTranslationDomain">
+          <argument>WNCOrganizerBundle</argument>
+        </call>
+      </service>
+      
       <service id="sonata.admin.donate" class="WNC\Bundle\OrganizerBundle\Admin\DonateAdmin">
         <tag name="sonata.admin" manager_type="orm" label="Donations" group="CRM" />
         <argument />
@@ -78,6 +88,7 @@
       
       <service id="wnc_organizer.payment.listener" class="%wnc_organizer.payment.listener.class%">
         <argument type="service" id="doctrine.orm.entity_manager" />
+        <argument type="service" id="logger" />
         <tag name="kernel.event_listener" event="payment.state_change" method="onPaymentStateChange" />
       </service>
       

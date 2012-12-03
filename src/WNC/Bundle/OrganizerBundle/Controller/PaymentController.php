@@ -14,7 +14,8 @@ use JMS\DiExtraBundle\Annotation as DI;
 use JMS\Payment\CoreBundle\PluginController\Result;
 use JMS\Payment\CoreBundle\Plugin\Exception\ActionRequiredException;
 use JMS\Payment\CoreBundle\Plugin\Exception\Action\VisitUrl;
-
+use JMS\Payment\CoreBundle\Entity\PaymentInstruction;
+use JMS\Payment\CoreBundle\Entity\ExtendedData;
 
 use WNC\Bundle\OrganizerBundle\Form\DonateType;
 use WNC\Bundle\OrganizerBundle\Entity\Donate;
@@ -72,42 +73,62 @@ class PaymentController extends Controller
     public function paymentAction($id) { // this is a personnal ID i pass to the controler to identify the previous shopping cart
 
       $order = $this->em->getRepository('WNCOrganizerBundle:Donate')->find($id);
+      
+      // under real conditions, you'll likely not hard-code the payment amount,
+      // currency, etc. here but retrieve it from a different source (like a form)
+      $instruction = new PaymentInstruction($order->getAmount(), 'USD', 'paypal_express_checkout', new ExtendedData());
+      $this->ppc->createPaymentInstruction($instruction);
 
-      $form = $this->getFormFactory()->create('jms_choose_payment_method', null, array(
-          'amount' => $order->getAmount(),
-          'currency' => 'USD',
-          'default_method' => 'payment_paypal', // Optional
-          'predefined_data' => array(
-              'paypal_express_checkout' => array(
-                  'return_url' => $this->router->generate('payment_complete', array(
+      
+      $order->setPaymentInstruction($instruction);
+      
+      $this->em->persist($order);
+      
+      // create the payment for the transaction (this allows you for example to
+      // collect money for the same payment instruction in multiple payments).
+      // In this case, we collect the entire amount in one payment.
+      $paymentId = $this->ppc->createPayment($instruction->getId(), $order->getAmount())->getId();
+
+      // Set the return/cancel Url
+      $ext_data = $instruction->getExtendedData();
+      $ext_data->set('return_url', $this->get('router')->generate('payment_complete', array('id' => $paymentId), true));
+      $ext_data->set('cancel_url', $this->router->generate('payment_cancel', array(
                       'id' => $order->getId()
-                          ), true),
-                  'cancel_url' => $this->router->generate('payment_cancel', array(
-                      'id' => $order->getId()
-                          ), true)
-              ),
-          ),
-      ));
+                          ), true));
 
-      if ('POST' === $this->request->getMethod()) {
-        $form->bindRequest($this->request);
+      // Set the details of the Payment
+      // How to set this Parameters: https://cms.paypal.com/us/cgi-bin/?cmd=_render-content&content_ID=developer/e_howto_api_WPCustomizing
+      $instruction->getExtendedData()->set('checkout_params',  array('L_PAYMENTREQUEST_0_NAME0' => 'Walktheland Donation',
+                                                              'L_PAYMENTREQUEST_0_NUMBER0' => $order->getId(),
+                                                              'L_PAYMENTREQUEST_0_AMT0' => $order->getAmount(),
+                                                              'L_PAYMENTREQUEST_0_QTY0' => '1',
+                                                              'PAYMENTREQUEST_0_CURRENCYCODE' => 'USD'));
+     
+      $result = $this->ppc->approveAndDeposit($paymentId, $order->getAmount());
+      
+      if (Result::STATUS_PENDING === $result->getStatus()) {
+            $ex = $result->getPluginException();
 
+            if ($ex instanceof ActionRequiredException) {
+                $action = $ex->getAction();
 
-        if ($form->isValid()) {
-          $instruction = $form->getData();
-          $this->ppc->createPaymentInstruction($instruction);
-          $order->setPaymentInstruction($instruction);
-          $this->em->persist($order);
-          $this->em->flush($order);
-          
-          
-          return new RedirectResponse($this->router->generate('payment_complete', array(
-                    'id' => $order->getId(),
-          )));
-          
+                // in this case we are redirect to Paypal
+                if ($action instanceof VisitUrl) {
+                    return $this->redirect($action->getUrl());
+                }
+
+                // no supported action
+                throw $ex;
+            }
+        } else if (Result::STATUS_SUCCESS !== $result->getStatus()) {
+            // you can do your error processing here
+
+            // the reasoning code is set by the payment backend provider and indicates what
+            // exactly went wrong during the transaction. all transactions are also logged to
+            // the database, so you can check this at any time.
+            throw new \RuntimeException('Transaction was not successful: '.$result->getReasonCode());
         }
-      }
-      return $this->render('WNCOrganizerBundle:Payment:pay.html.twig', array('id' => $id, 'form' => $form->createView()));
+      
     }
     
     /** @DI\LookupMethod("form.factory") */
@@ -120,17 +141,11 @@ class PaymentController extends Controller
      * @Template()
      */
     public function paymentCompleteAction($id) {
-      
-        $order = $this->em->getRepository('WNCOrganizerBundle:Donate')->find($id);
+        
+        $payment = $this->em->getRepository('JMSPaymentCoreBundle:Payment')->find($id);
+        
 
-        $instruction = $order->getPaymentInstruction();
-        if (null === $pendingTransaction = $instruction->getPendingTransaction()) {
-            $payment = $this->ppc->createPayment($instruction->getId(), $instruction->getAmount() - $instruction->getDepositedAmount());
-        } else {
-            $payment = $pendingTransaction->getPayment();
-        }
-
-        $result = $this->ppc->approveAndDeposit($payment->getId(), $payment->getTargetAmount());
+        $result = $this->ppc->approveAndDeposit($id, $payment->getTargetAmount());
         if (Result::STATUS_PENDING === $result->getStatus()) {
             $ex = $result->getPluginException();
 

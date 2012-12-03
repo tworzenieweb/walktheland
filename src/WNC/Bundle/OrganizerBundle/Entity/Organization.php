@@ -4,6 +4,7 @@ namespace WNC\Bundle\OrganizerBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Organization
@@ -69,6 +70,18 @@ class Organization
      * @ORM\Column(name="state", type="string", length=255)
      */
     private $state;
+    
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Participant", mappedBy="organization")
+     */
+    private $participants;
+    
+
+    public function __construct()
+    {
+        $this->participants = new ArrayCollection();
+    }
     
 
 
@@ -245,5 +258,38 @@ class Organization
     public function getState()
     {
         return $this->state;
+    }
+
+    /**
+     * Add participants
+     *
+     * @param \WNC\Bundle\OrganizerBundle\Entity\Participant $participants
+     * @return Organization
+     */
+    public function addParticipant(\WNC\Bundle\OrganizerBundle\Entity\Participant $participants)
+    {
+        $this->participants[] = $participants;
+    
+        return $this;
+    }
+
+    /**
+     * Remove participants
+     *
+     * @param \WNC\Bundle\OrganizerBundle\Entity\Participant $participants
+     */
+    public function removeParticipant(\WNC\Bundle\OrganizerBundle\Entity\Participant $participants)
+    {
+        $this->participants->removeElement($participants);
+    }
+
+    /**
+     * Get participants
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getParticipants()
+    {
+        return $this->participants;
     }
 }

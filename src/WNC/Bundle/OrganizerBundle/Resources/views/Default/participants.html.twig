@@ -1,0 +1,80 @@
+{% extends "ApplicationSonataUserBundle:Profile:show.html.twig" %}
+
+{% block extra_header %}- Participants{% endblock %}
+
+{% block content_page %}
+
+<p>Click on specific column to sort organizations. Second click on the same column will put data in reverse order</p>
+
+<form class="form-search">
+  <label>Search</label>
+  <input type="text" class="input-medium search-query" id="filter-box" name="filter">
+  <button type="reset" class="btn" id="filter-clear-button">Clear</button>
+</form>
+
+
+
+<table class="table table-striped tablesorter" id="community">
+<thead>
+  <tr>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Phone</th>
+    <th>Email</th>
+    <th>Registered</th>
+  </tr>
+</thead>
+<tbody>
+{% for participant in participants %}
+
+    <tr>
+      <td>{{ participant.firstName }}</td>
+      <td>{{ participant.lastName }}</td>
+      <td>{{ participant.phone }}</td>
+      <td>{{ participant.email }}</td>
+      <td>{{ participant.created | date('F jS \\a\\t g:ia') }}</td>
+      </tr>
+
+{% endfor %}
+</tbody>
+</table>
+
+
+{% endblock %}
+
+{% block foot_script %}
+
+{{ parent() }}
+
+{% javascripts
+        'bundles/wncorganizer/js/jquery.tablesorter.min.js'
+        'bundles/wncorganizer/js/jquery.tablesorter.filter.js'
+%}
+<script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
+
+<script>
+
+(function($) {
+
+    $('#community').tablesorter({debug: false, widgets: ['zebra'], sortList: [[0,0]]})
+    .tablesorterFilter({filterContainer: "#filter-box",
+                            filterClearContainer: "#filter-clear-button",
+                            filterColumns: [0,1]});; 
+
+})(jQuery);
+
+</script>
+
+{% endblock %}
+
+{% block head_style %}
+{{ parent() }}
+
+    {% stylesheets
+        'bundles/wncorganizer/css/tablesorter/style.css'
+    %}
+    <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
+    {% endstylesheets %}
+
+{% endblock %}

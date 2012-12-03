@@ -16,7 +16,7 @@ class DonateRepository extends EntityRepository
   public function getDonators()
   {
     
-    $dql = 'SELECT d from WNCOrganizerBundle:Donate d';
+    $dql = 'SELECT d from WNCOrganizerBundle:Donate d WHERE d.confirmed = 1';
     return $this->getEntityManager()->createQuery($dql)
             ->getResult('donateHydrator');
     
