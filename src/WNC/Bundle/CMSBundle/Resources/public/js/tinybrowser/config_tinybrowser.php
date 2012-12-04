@@ -34,7 +34,7 @@ $tinybrowser = array();
 $tinybrowser['obfuscate'] = 's0merand0mjunk!!!111';
 
 // Set default language (ISO 639-1 code)
-$tinybrowser['language'] = 'pl';
+$tinybrowser['language'] = 'en';
 
 // Set the integration type (TinyMCE is default)
 $tinybrowser['integration'] = 'tinymce'; // Possible values: 'tinymce', 'fckeditor'
@@ -75,7 +75,7 @@ $tinybrowser['imagequality'] = 80; // only used when resizing or rotating
 $tinybrowser['thumbquality'] = 80;
 
 // Date format, as per php date function
-$tinybrowser['dateformat'] = 'd/m/Y H:i';
+$tinybrowser['dateformat'] = 'm/d/Y H:i';
 
 // Permitted file extensions
 $tinybrowser['filetype']['image'] = '*.jpg, *.jpeg, *.gif, *.png'; // Image file types
@@ -93,7 +93,7 @@ $tinybrowser['order']['type'] = 'asc'; // Possible values: asc, desc
 $tinybrowser['view']['image'] = 'thumb'; // Possible values: thumb, detail
 
 // File Pagination - split results into pages (0 is none)
-$tinybrowser['pagination'] = 1;
+$tinybrowser['pagination'] = 10;
 
 // TinyMCE dialog.css file location, relative to tinybrowser.php (can be set to absolute link)
 $tinybrowser['tinymcecss'] = '../../../stfalcontinymce/vendor/tiny_mce/themes/advanced/skins/default/dialog.css';

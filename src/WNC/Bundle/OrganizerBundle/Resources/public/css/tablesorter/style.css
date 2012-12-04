@@ -2,6 +2,7 @@
 table.tablesorter thead tr th, table.tablesorter tfoot tr th {
 	background-color: #e6EEEE;
 	border: 1px solid #FFF;
+        cursor: pointer;
 }
 
 
