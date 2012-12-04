@@ -12,4 +12,13 @@ use Doctrine\ORM\EntityRepository;
  */
 class ArticleRepository extends EntityRepository
 {
+  
+  public function findAllWithMedias()
+  {
+    $dql = "SELECT a, p FROM WNCCMSBundle:Article a INNER JOIN a.picture p";
+    return $this->getEntityManager()->createQuery($dql)
+            ->execute();
+    
+  }
+  
 }

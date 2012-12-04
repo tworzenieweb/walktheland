@@ -2,11 +2,15 @@
 <div id="myCarousel" class="carousel slide">
   <!-- Carousel items -->
   <div class="carousel-inner">
-    {% for galleryHasMedia in gallery.GalleryHasMedias %}
-    <div class="item {% if loop.index == 1 %}active{% endif %}">
-    {% thumbnail galleryHasMedia.media, 'big' %}    
-    </div>
+    
+    {% for advertisment in advertisments %}
+      <div class="item">
+        <a href="{{ advertisment.link }}">
+          {% thumbnail advertisment.picture, 'big' %}
+        </a>
+      </div>
     {% endfor %}
+    
     
   </div>
   <!-- Carousel nav -->

@@ -7,14 +7,14 @@
 
 <div class="span9">
   
-  {% render 'WNCOrganizerBundle:Default:banner' %}
+  {% render 'WNCOrganizerBundle:Default:advertisment' with {"type": "banner"} %}
   
   {% render 'WNCCMSBundle:Default:articles' %}
   
 </div>
 <div class="span3">
   
-  {% render 'WNCOrganizerBundle:Default:advertisment' %}
+  {% render 'WNCOrganizerBundle:Default:advertisment' with {"type": "sidebar"} %}
   
 </div>
 

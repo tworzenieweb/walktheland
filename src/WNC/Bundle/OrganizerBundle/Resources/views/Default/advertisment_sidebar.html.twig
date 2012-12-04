@@ -1,0 +1,7 @@
+{% for advertisment in advertisments %}
+<div class="advertisment">
+  <a href="{{ advertisment.link }}">
+    {% thumbnail advertisment.picture, 'reference' %}
+  </a>
+</div>
+{% endfor %}

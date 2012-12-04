@@ -10,16 +10,18 @@ use WNC\Bundle\OrganizerBundle\Entity\Participant;
 use WNC\Bundle\OrganizerBundle\Form\ParticipantType;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use JMS\SecurityExtraBundle\Annotation\Secure;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 
 class DefaultController extends Controller
 {
     /**
      * @Route("/", name="homepage")
      * @Template()
+     * @Cache(expires="tomorrow")
      */
     public function indexAction()
     {
-        return array('name' => 1);
+        return array(); 
     }
     
     /**
@@ -83,59 +85,16 @@ class DefaultController extends Controller
     }
     
     /**
-     * @Route("/banner", name="banner")
-     * @Template()
-     */
-    public function bannerAction()
-    {
-      
-        $gallery = $this->get('sonata.media.manager.gallery')->findOneBy(array(
-            'id'      => 2,
-            'enabled' => true
-        ));
-
-        if (!$gallery) {
-            throw new NotFoundHttpException('unable to find the gallery with the id');
-        }
-
-        return array(
-            'gallery'   => $gallery,
-        );
-      
-    }
-    
-    /**
      * 
-     * @Route("/share/{slug}", name="share_community")
+     * @Route("/advertisment/{type}", name="advertisment")
      * @Template()
+     * @Cache(expires="tomorrow")
      */
-    public function shareAction($slug)
+    public function advertismentAction($type)
     {
-     
-      return array('organization' =>
-          $this->getDoctrine()->getRepository('WNCOrganizerBundle:Organization')->findOneBySlugWithContact($slug));
-      
-    }
-    
-    /**
-     * 
-     * @Route("/advertisment", name="advertisment")
-     * @Template()
-     */
-    public function advertismentAction()
-    {
-        $gallery = $this->get('sonata.media.manager.gallery')->findOneBy(array(
-            'id'      => 1,
-            'enabled' => true
-        ));
-
-        if (!$gallery) {
-            throw new NotFoundHttpException('unable to find the gallery with the id');
-        }
-
-        return array(
-            'gallery'   => $gallery,
-        );
+      return $this->render('WNCOrganizerBundle:Default:advertisment_' . $type . '.html.twig', array(
+        'advertisments' => $this->getDoctrine()->getRepository('WNCOrganizerBundle:Banner')->getEnabledWithPhoto($type)
+      ));
     }
     
     /**

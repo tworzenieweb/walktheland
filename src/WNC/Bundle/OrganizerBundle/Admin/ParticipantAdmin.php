@@ -39,4 +39,11 @@ class ParticipantAdmin extends Admin
             ->add('organization')
         ;
     }
+    
+        protected function configureDatagridFilters(DatagridMapper $datagrid)
+    {
+        $datagrid
+            ->add('organization')
+        ;
+    }
 }

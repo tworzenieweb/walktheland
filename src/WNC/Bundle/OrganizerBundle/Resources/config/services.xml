@@ -19,6 +19,16 @@
     -->
     
     <services>
+      <service id="sonata.admin.banner" class="WNC\Bundle\OrganizerBundle\Admin\BannerAdmin">
+        <tag name="sonata.admin" manager_type="orm" label="Banners" group="CRM" />
+        <argument />
+        <argument>WNC\Bundle\OrganizerBundle\Entity\Banner</argument>
+        <argument>SonataAdminBundle:CRUD</argument>
+        <call method="setTranslationDomain">
+          <argument>WNCOrganizerBundle</argument>
+        </call>
+      </service>
+      
       <service id="sonata.admin.organization" class="WNC\Bundle\OrganizerBundle\Admin\OrganizationAdmin">
         <tag name="sonata.admin" manager_type="orm" label="Organizations" group="CRM" />
         <argument />
@@ -52,6 +62,7 @@
       <service id="wnc_organizer.menu_builder" class="WNC\Bundle\OrganizerBundle\Navbar\MenuBuilder">
         <argument type="service" id="knp_menu.factory" />        
         <argument id="security.context" type="service" />
+        <argument id="doctrine.orm.entity_manager" type="service" />
       </service>
       
       <service id="wnc_organizer.menu" class="Knp\Menu\MenuItem" factory-service="wnc_organizer.menu_builder" factory-method="createMainMenu" scope="request">

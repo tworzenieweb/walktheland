@@ -17,7 +17,17 @@
         <argument>WNC\Bundle\CMSBundle\Entity\Article</argument>
         <argument>SonataAdminBundle:CRUD</argument>
         <call method="setTranslationDomain">
-          <argument>WNCArticleBundle</argument>
+          <argument>WNCCMSBundle</argument>
+        </call>
+      </service>
+      
+        <service id="sonata.admin.page" class="WNC\Bundle\CMSBundle\Admin\PageAdmin">
+        <tag name="sonata.admin" manager_type="orm" label="Page" group="CMS" />
+        <argument />
+        <argument>WNC\Bundle\CMSBundle\Entity\Page</argument>
+        <argument>SonataAdminBundle:CRUD</argument>
+        <call method="setTranslationDomain">
+          <argument>WNCCMSBundle</argument>
         </call>
       </service>
     </services>

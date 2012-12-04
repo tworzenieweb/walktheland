@@ -1,0 +1,12 @@
+{% extends "::base.html.twig" %}
+
+{% block headline %}
+{{ article.title }}
+{% endblock headline %}
+
+{% block content %}
+
+{{ article.body | raw }}
+
+
+{% endblock %}
