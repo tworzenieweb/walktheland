@@ -42,7 +42,7 @@ class MenuBuilder extends AbstractNavbarMenuBuilder
           $menu->addChild('Sign Up', array('route' => 'fos_user_registration_register'));
         }
         
-        $results = $this->em->getRepository('WNCCMSBundle:Page')->findAll();
+        $results = $this->em->getRepository('WNCCMSBundle:Page')->findBy(array('in_menu' => true));
         
         
         foreach($results as $result)

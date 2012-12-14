@@ -41,6 +41,12 @@ class Page
      */
     private $body;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="in_menu", type="boolean")
+     */
+    private $in_menu = true;
 
     /**
      * Get id
@@ -121,5 +127,32 @@ class Page
     public function getBody()
     {
         return $this->body;
+    }
+
+    /**
+     * Set in_menu
+     *
+     * @param string $inMenu
+     * @return Page
+     */
+    public function setInMenu($inMenu)
+    {
+        $this->in_menu = $inMenu;
+    
+        return $this;
+    }
+
+    /**
+     * Get in_menu
+     *
+     * @return string 
+     */
+    public function getInMenu()
+    {
+        return $this->in_menu;
+    }
+    
+    public function __toString() {
+      return $this->getTitle();
     }
 }

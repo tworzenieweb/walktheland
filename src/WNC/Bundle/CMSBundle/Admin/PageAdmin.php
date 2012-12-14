@@ -21,6 +21,7 @@ class PageAdmin extends Admin
                     'data-theme' => 'advanced'
                 )
             ))
+            ->add('in_menu')
         ;
     }
     
@@ -29,6 +30,7 @@ class PageAdmin extends Admin
         $showMapper
             ->add('title')
             ->add('body', 'html')
+            ->add('in_menu')
         ;
         
     }
@@ -38,6 +40,7 @@ class PageAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('title')
+            ->add('in_menu')
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'view' => array(),

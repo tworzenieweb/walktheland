@@ -55,7 +55,7 @@ class DefaultController extends Controller
     
     /**
      * @Template()
-     * @Cache(expires="+1 years")
+     * @Cache(expires="+1 days")
      */
     public function articlesAction()
     {

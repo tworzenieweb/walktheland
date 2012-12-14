@@ -214,4 +214,8 @@ class Article
     {
         return $this->picture;
     }
+    
+    public function __toString() {
+      return $this->getTitle();
+    }
 }
