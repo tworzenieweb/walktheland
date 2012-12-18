@@ -16,6 +16,8 @@
                 
                 {% if is_granted('IS_AUTHENTICATED_FULLY') and not is_granted('ROLE_SUPER_ADMIN')  %}
                 <a href="{{ path('sonata_user_profile_show') }}" class="btn btn-large">My organization</a>
+                <br />
+                <a href="{{ path('fos_user_security_logout') }}">logout</a>
                 {% elseif is_granted('IS_AUTHENTICATED_FULLY') and is_granted('ROLE_SUPER_ADMIN') %}
                 <a href="{{ path('sonata_admin_dashboard') }}" class="btn btn-large">Admin dashboard</a>
                 <br />
