@@ -21,6 +21,8 @@
                 {% else %}
                 <a href="{{ path('fos_user_registration_register') }}" class="btn btn-large">Join The Walk</a>
                 {% endif %}
+                <br />
+                <a href="{{ path('fos_user_security_login') }}">organization login</a>
 
 
             </div>
@@ -44,9 +46,6 @@
                     </form>
                 {% endif %}
                 {{ navbar.hasMenu('rightmenu') ? knp_menu_render(navbar.getMenu('rightmenu'), {'currentClass': 'active', 'ancestorClass': 'active', 'allow_safe_labels': 'true'}) : '' }}
-                    <div class="pull-right">
-                        <a href="{{ path('fos_user_security_login') }}">organization admin</a>
-                    </div>
             </div>
 
         </div>
