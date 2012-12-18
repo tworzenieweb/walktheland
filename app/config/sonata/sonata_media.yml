@@ -19,7 +19,7 @@ sonata_media:
                 - sonata.media.provider.image
 
             formats:
-                big: { width: 720, quality: 100}
+                big: { width: 940, quality: 100}
         
         advertisment:
             providers:
