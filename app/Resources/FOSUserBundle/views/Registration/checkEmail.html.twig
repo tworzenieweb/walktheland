@@ -1,4 +1,9 @@
-{% extends "FOSUserBundle::layout.html.twig" %}
+{% extends "::base.html.twig" %}
+
+{% block headline %}
+Please confirm your email
+{% endblock headline %}
+
 
 {% block fos_user_content %}
     <p>{{ 'registration.check_email'|trans({'%email%': user.email}, 'FOSUserBundle') }}</p>
