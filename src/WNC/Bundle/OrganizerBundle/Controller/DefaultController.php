@@ -17,7 +17,6 @@ class DefaultController extends Controller
     /**
      * @Route("/", name="homepage")
      * @Template()
-     * @Cache(expires="tomorrow")
      */
     public function indexAction()
     {
