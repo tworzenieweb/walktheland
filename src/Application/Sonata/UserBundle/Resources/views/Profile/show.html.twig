@@ -71,12 +71,8 @@
 {% block foot_script %}
 {{ parent() }}
 
-{% javascripts
-        'http://maps.google.com/maps/api/js?sensor=false&amp;language=en'
-        '@WNCOrganizerBundle/Resources/public/js/gmap.js'
-%}
-  <script type="text/javascript" src="{{ asset_url }}"></script>
-{% endjavascripts %}
+<script src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>
+  <script src="{{ asset('bundles/wncorganizer/js/gmap.js') }}"></script>
 
   <script>
     (function($) {
