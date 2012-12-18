@@ -35,23 +35,15 @@ class MenuBuilder extends AbstractNavbarMenuBuilder
 
       
         $menu = $this->createNavbarMenuItem();
-        $menu->addChild('Homepage', array('route' => 'homepage'));
-        $menu->addChild('Participating Communities', array('route' => 'organizations_list'));
-        
-        if(!$this->securityContext->isGranted('ROLE_USER')) {
-          $menu->addChild('Sign Up', array('route' => 'fos_user_registration_register'));
-        }
+        $menu->addChild('HOME', array('route' => 'homepage'));
+        $menu->addChild('PARTICIPATING COMMUNITIES', array('route' => 'organizations_list'));
         
         $results = $this->em->getRepository('WNCCMSBundle:Page')->findBy(array('in_menu' => true));
-        
-        
         foreach($results as $result)
         {
-          $menu->addChild($result->getTitle(), array('route' => 'wnc_cms_page_show', 'routeParameters' => array('slug' => $result->getSlug())));
+          $menu->addChild(strtoupper($result->getTitle()), array('route' => 'wnc_cms_page_show', 'routeParameters' => array('slug' => $result->getSlug())));
         }
         
-        $menu->addChild('Contact', array('route' => 'contact'));
-        $menu->addChild('Donate', array('route' => 'donate'));
 
         $menu->setCurrentUri($request->getRequestUri());
         
@@ -63,14 +55,18 @@ class MenuBuilder extends AbstractNavbarMenuBuilder
         $menu = $this->factory->createItem('root');
         $menu->setChildrenAttribute('class', 'nav pull-right');
 
-//        print_r($this->securityContext->getToken()); exit;
         
-        if($this->isLoggedIn) {
-          $menu->addChild(sprintf('My Organization (%s)', $this->securityContext->getToken()->getUser()), array('route' => 'sonata_user_profile_show'));
-          $menu->addChild('Logout', array('route' => 'fos_user_security_logout'));
-        }
-        else
-          $menu->addChild('Login', array('route' => 'fos_user_security_login'));
+        $menu->addChild('CONTACT', array('route' => 'contact'));
+        $menu->addChild('DONATE', array('route' => 'donate'));
+        
+        
+        
+//        if($this->isLoggedIn) {
+//          $menu->addChild(sprintf('My Organization (%s)', $this->securityContext->getToken()->getUser()), array('route' => 'sonata_user_profile_show'));
+//          $menu->addChild('LOGOUT', array('route' => 'fos_user_security_logout'));
+//        }
+//        else
+//          $menu->addChild('LOGIN', array('route' => 'fos_user_security_login'));
         
         $menu->setCurrentUri($request->getRequestUri());
         

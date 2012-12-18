@@ -87,7 +87,7 @@
         <argument type="collection">
           <argument key="fixedTop" >false</argument>
           <argument key="isFluid" >false</argument>
-          <argument key="template" >MopaBootstrapBundle:Navbar:navbar.html.twig</argument>
+          <argument key="template" >WNCOrganizerBundle:Default:navbar.html.twig</argument>
         </argument>
         <tag name="mopa_bootstrap.navbar" alias="frontendNavbar" />
       </service>

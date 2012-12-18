@@ -40,6 +40,7 @@ assetic:
         cssembed:
             jar: %kernel.root_dir%/Resources/java/cssembed-0.3.6.jar
             apply_to: "\.css$|\.less$"
+            max_uri_length: 10000000
         less:
             node: /usr/bin/node
             node_paths: [/usr/lib/node_modules]

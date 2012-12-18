@@ -27,7 +27,7 @@ sonata_media:
 
             formats:
                 small: { width: 250, quality: 100}
-                big: { width: 720, quality: 100}
+                big: { width: 940, quality: 100}
                 
         cms:
             providers:

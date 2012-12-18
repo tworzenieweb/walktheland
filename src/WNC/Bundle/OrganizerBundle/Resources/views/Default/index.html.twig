@@ -1,13 +1,18 @@
 {% extends "::base.html.twig" %}
 
-{% block page_header %}
-{% endblock page_header %}
+{% block container %}
+
+<div class="container">
+    {% render 'WNCOrganizerBundle:Default:advertisment' with {"type": "banner"} %}
+</div>
+
+{{ parent() }}
+
+{% endblock %}
 
 {% block content %}
 
 <div class="span9">
-  
-  {% render 'WNCOrganizerBundle:Default:advertisment' with {"type": "banner"} %}
   
   {% render 'WNCCMSBundle:Default:articles' %}
   
@@ -20,6 +25,8 @@
 
 {% endblock content %}
 
+{% block page_header %}
+{% endblock %}
 
 {% block foot_script %}
 {{ parent() }}

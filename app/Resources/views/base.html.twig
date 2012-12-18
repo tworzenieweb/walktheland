@@ -20,12 +20,9 @@ Copyright {{ "now" | date('Y') }} Walk the Land.
 
 
 {% block head_style %}
-{{ parent() }}
-
-    {% stylesheets
-        'bundles/wncorganizer/css/global.css'
-    %}
-    <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
-    {% endstylesheets %}
-
-{% endblock %}
+{% stylesheets
+       '@WNCOrganizerBundle/Resources/public/less/mopa.less'
+%}
+<link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
+{% endstylesheets %}
+{% endblock head_style %}
