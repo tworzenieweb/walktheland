@@ -37,7 +37,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/register/{slug}", name="register_walk")
+     * @Route("/register-walk/{slug}", name="register_walk")
      * @Template()
      */
     public function registerWalkAction($slug)
